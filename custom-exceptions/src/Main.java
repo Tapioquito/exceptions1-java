@@ -32,16 +32,13 @@ public class Main {
             checkOut = sdf.parse(sc.next());
 
 
-            Date now = new Date();
-            if (checkIn.before(now) || checkOut.before(now)) {
-                System.out.println("Check-out date: ");
-            } else if (!checkOut.after(checkIn)) {
-                System.out.println("Error in reservation: Check-out date must be AFTER check-in date. ");
-            } else {
-                reservation.updateDates(checkIn, checkOut);
+            String error = reservation.updateDates(checkIn, checkOut);
+            if (error != null) {
+                System.out.println("Error in Reservation: " + error);
+            }
+            else {
                 System.out.println("Reservation: " + reservation);
             }
-
 
         }
 
